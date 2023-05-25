@@ -1,0 +1,9 @@
+Feature: Session
+
+  Scenario: Session cookie expires
+
+    Given the user is logged in for more than 10 minutes
+    When he makes any interaction with the website
+    Then he is redirected to the Login page
+    And is logged out since the session expired
+    And there should be a message stating: 'Session expired, please log in again.'

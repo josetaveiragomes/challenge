@@ -1,0 +1,27 @@
+Feature: Inventory
+
+  Scenario: Inventory base state
+    Given the standard_user is logged in
+    When the user navigates to the Inventory page
+    Then there should be a list of items displayed
+    And each item should have an appropriate title
+    And each item should have an appropriate description
+    And each item should have an appropriate price
+    And each item should have the image related with itself
+    And there should be a button for interacting with the item (Add/Remove)
+    And there should be a filter with the option 'Name (A to Z)' as default
+    And the secondary header should display 'Products' for title
+
+  Scenario: Inventory add one item
+    Given the standard_user is logged in
+    And on the Inventory Page
+    When the user presses the Add to Cart button of any item
+    Then the Cart button should have a badge with the number of items (1)
+    And the Add to Cart button for the item should now be a Remove button
+
+  Scenario: Inventory remove one item
+    Given the standard_user is logged in
+    And on the Inventory Page with one item in the cart
+    When the user presses the Remove button of the item in the cart
+    Then the Cart button should not have a badge with the number of items
+    And the Remove button for the item should now be a Add to Cart button

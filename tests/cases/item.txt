@@ -1,0 +1,13 @@
+Feature: Item
+
+  Scenario: Item base state
+    Given the standard_user is logged in
+    And on the Inventory page
+    When the user selects an item
+    Then he should be redirected to the item page
+    And each item should have an appropriate title
+    And each item should have an appropriate description
+    And each item should have an appropriate price
+    And each item should have the image related with itself
+    And there should be a button for interacting with the item (Add/Remove)
+    And the secondary header should display 'Back to Products' for title

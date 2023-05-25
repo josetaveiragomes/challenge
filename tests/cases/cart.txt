@@ -1,0 +1,51 @@
+Feature: Cart
+
+  Scenario: Cart base state
+    Given the standard_user is logged in
+    When the user navigates to the Cart page
+    Then the Cart button should not have a badge with the number of items
+    And there should be no items in the Cart
+    And the Checkout button should be disabled
+    And the Continue Shopping button should be enabled
+    And there should be a placeholder stating: 'No items in your cart'
+    And the secondary header should display 'Your Cart' for title
+
+  Scenario: Cart continue shopping button
+    Given the standard_user is logged in
+    And on the Cart Page
+    When the user presses the Continue Shopping Icon
+    Then he should be redirected to the Inventory Page
+
+  Scenario: Cart remove item
+    Given the standard_user is logged in
+    And on the Cart Page with one item
+    When the user presses the Remove button for the item
+    Then the item should be removed form the cart
+    And the Cart button should not have a badge with the number of items
+    And there should be no items in the Cart
+    And the Checkout button should be disabled
+    And the Continue Shopping button should be enabled
+    And there should be a placeholder stating: 'No items in your cart'
+    And the secondary header should display 'Your Cart' for title
+
+  Scenario: Cart has one item
+    Given the standard_user is logged in
+    And on the Inventory Page with one item in the cart
+    When the user presses the Cart Icon
+    Then he should be redirected to the Cart Page
+    And the Cart button should have a badge with the number of items (1)
+    And the item should be listed with the correct information (quantity, name, description, price, visible remove button)
+    And the Checkout button should be enabled
+    And the Continue Shopping button should be enabled
+    And the secondary header should display 'Your Cart' for title
+
+  Scenario: Cart change item quantity
+    Given the standard_user is logged in
+    And on the Cart Page with one item
+    When the user changes the quantity of the item to 5
+    Then the item quantity should be updated accordingly
+    And the Cart button should have a badge with the number of items (5)
+    And the item should be listed with the correct information (quantity, name, description, price, visible remove button)
+    And the Checkout button should be enabled
+    And the Continue Shopping button should be enabled
+    And the secondary header should display 'Your Cart' for title

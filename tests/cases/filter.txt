@@ -1,0 +1,14 @@
+Feature: Filter
+
+  Scenario Outline: Filter options
+    Given the standard_user is logged in
+    And on the Inventory Page
+    When he changes the filter to <Option>
+    Then the items should be in <Order> order
+
+  Examples:
+  | Option                | Order                |
+  | 'Name (A to Z)'       | Alphabetical         |
+  | 'Name (Z to A)'       | Reverse Alphabetical |
+  | 'Price (low to high)' | Ascending Price      |
+  | 'Price (high to low)' | Descending Price     |
