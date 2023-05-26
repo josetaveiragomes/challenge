@@ -1,6 +1,15 @@
 import Page from './page';
+import CONSTANTS from "../constants";
 
-class LoginPage extends Page {
+class LoginPage extends Page{
+
+  waitForPageElements(): boolean{
+    this.waitForPageLoad();
+    this.inputLoginUsername.waitForDisplayed();
+    this.inputLoginPassword.waitForDisplayed();
+    this.inputLoginButton.waitForDisplayed();
+    return true;
+  }
 
   get inputLoginUsername(): WebdriverIO.Element {
     const elem = $('[data-test="username"]');
@@ -28,4 +37,4 @@ class LoginPage extends Page {
   
 }
 
-export default LoginPage;
+export default new LoginPage(CONSTANTS.SAUCE_DEMO_URL.BASE, '');

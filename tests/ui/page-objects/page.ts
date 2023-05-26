@@ -5,20 +5,38 @@ import Footer from './components/footer';
 class Page {
 
   url: string;
+  path: string;
 
-  constructor(url: string) {
+  constructor(url: string, path: string) {
     this.url = url;
+    this.path = path;
   }
 
-  get sidebar(): any {
+  open(): void {
+    browser.url(this.url + this.path);
+    this.waitForPageLoad();
+  }
+
+  waitForPageLoad(): void {
+    browser.waitUntil(
+      () => browser.execute(
+        () => document.readyState === 'complete'
+      ),
+      {
+        timeoutMsg: 'Page is still not in a ready state!'
+      }
+    );
+  }
+
+  get sidebar(): typeof SideBar {
     return SideBar;
   }
 
-  get header(): any {
+  get header(): typeof Header {
     return Header;
   }
 
-  get footer(): any {
+  get footer(): typeof Footer {
     return Footer;
   }
 
