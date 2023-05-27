@@ -32,20 +32,28 @@ class Footer {
     return this.social('linkedin');
   }
 
-  socialLink(option: string): string {
+  socialLink(option: string): WebdriverIO.Element {
+    return this.social(option).$('a');
+  }
+
+  clickSocialLink(option: string): void {
+    return this.socialLink(option).click();
+  }
+
+  socialLinkValue(option: string): string {
     return this.social(option).$('a').getAttribute('href');
   }
 
-  get twitterSocialLink(): string {
-    return this.socialLink('twitter');
+  get twitterSocialLinkValue(): string {
+    return this.socialLinkValue('twitter');
   }
 
-  get facebookSocialLink(): string {
-    return this.socialLink('facebook');
+  get facebookSocialLinkValue(): string {
+    return this.socialLinkValue('facebook');
   }
 
-  get linkedinSocialLink(): string {
-    return this.socialLink('linkedin');
+  get linkedinSocialLinkValue(): string {
+    return this.socialLinkValue('linkedin');
   }
 
   get footerCopy(): WebdriverIO.Element {

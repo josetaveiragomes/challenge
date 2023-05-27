@@ -21,6 +21,11 @@ export default {
     FINISH: "Finish",
     BACK_HOME: "Back Home",
   },
+  SIDEBAR: {
+    ALL_ITEMS: "https://www.saucedemo.com/inventory.html",
+    ABOUT: "https://saucelabs.com/",
+    LOGOUT: "https://www.saucedemo.com/"
+  },
   SOCIAL: {
     TWITTER: 'https://twitter.com/saucelabs',
     FACEBOOK: 'https://www.facebook.com/saucelabs',

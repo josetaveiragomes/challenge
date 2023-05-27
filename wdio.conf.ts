@@ -6,6 +6,7 @@ exports.config = {
   suites: {
     login: ['./tests/ui/specs/login.e2e.ts'],
     sidebar: ['./tests/ui/specs/sidebar.e2e.ts'],
+    footer: ['./tests/ui/specs/footer.e2e.ts'],
     checkout: ['./tests/ui/specs/checkout.e2e.ts'],
     end2end: ['./tests/ui/specs/full-flow.ts'],
   },
@@ -62,7 +63,7 @@ exports.config = {
   ],
   mochaOpts: {
     ui: 'bdd',
-    timeout: 5000,
+    timeout: 10000,
     bail: false
   }
 }

@@ -41,4 +41,4 @@ class LoginPage extends Page{
   
 }
 
-export default new LoginPage(CONSTANTS.SAUCE_DEMO_URL.BASE, '');
+export default new LoginPage(CONSTANTS.SAUCE_DEMO_URL.BASE, CONSTANTS.EMPTY_STRING);

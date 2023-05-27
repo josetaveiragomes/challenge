@@ -18,7 +18,7 @@ const users = [
 users.forEach(({USERNAME, PASSWORD, MESSAGE}) =>{
   describe(`#003: Login with invalid user for ${USERNAME}`, () => {
     
-    before( function() {
+    before(function() {
       LoginPage.open();
     });
 

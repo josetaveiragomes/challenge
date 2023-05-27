@@ -31,6 +31,30 @@ class Sidebar {
     return elem;
   }
 
+  get inventorySidebarLinkValue(): string {
+    return this.inventorySidebarLink.getAttribute('href');
+  }
+
+  get aboutSidebarLinkValue(): string {
+    return this.aboutSidebarLink.getAttribute('href');
+  }
+
+  get logoutSidebarLinkValue(): string {
+    return this.logoutSidebarLink.getAttribute('href');
+  }
+
+  clickInventorySidebarLink(): void {
+    this.inventorySidebarLink.click();
+  }
+
+  clickAboutSidebarLink(): void {
+    this.aboutSidebarLink.click();
+  }
+
+  clickLogoutSidebarLink(): void {
+    this.logoutSidebarLink.click();
+  }
+
   resetAppState(): void {
     this.resetSidebarLink.click();
   }

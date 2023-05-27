@@ -54,7 +54,7 @@ const test_data = [
 test_data.forEach(({FIRST_NAME, LAST_NAME, POSTAL_CODE, MESSAGE}) =>{
   describe(`#019 & #20: Checkout Step One invalid and empty values`, () => {
     
-    before( function() {
+    before(function() {
       LoginPage.open();
     });
 
@@ -84,6 +84,7 @@ test_data.forEach(({FIRST_NAME, LAST_NAME, POSTAL_CODE, MESSAGE}) =>{
       CheckoutStepOnePage.clickContinueButton();
       //ASSERTIONS
       expect(CheckoutStepOnePage.errorMessageText).toBe(MESSAGE); //FAILS HERE FOR INVALID NAMES AND POSTAL CODE
+      expect(browser.getUrl()).toBe(CONSTANTS.SAUCE_DEMO_URL.BASE + CONSTANTS.SAUCE_DEMO_URL.CHECKOUT_STEP_ONE);
     });
   });
 });

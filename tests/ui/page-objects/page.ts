@@ -28,6 +28,15 @@ class Page {
     );
   }
 
+  waitForUrlToBe(url: string): void {
+    browser.waitUntil(function() {
+      return browser.getUrl().includes(url);
+    },
+    {
+      timeoutMsg: `Page url is still not ${url}!`
+    })
+  }
+
   get sidebar(): typeof SideBar {
     return SideBar;
   }

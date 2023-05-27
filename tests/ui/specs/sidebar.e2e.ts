@@ -9,9 +9,61 @@ import InventoryBehaviour from '../behaviour-patterns/inventory.behaviour';
 //CONSTANTS
 import CONSTANTS from "../constants";
 
-describe(`#006: Sidebar reset capabilities`, () => {
+//TEST DATA
+const options = [
+  {
+    CLICK_LINK: "(function click(page) {page.sidebar.clickInventorySidebarLink();})",
+    URL: CONSTANTS.SIDEBAR.ALL_ITEMS
+  },
+  {
+    CLICK_LINK: "(function click(page) {page.sidebar.clickAboutSidebarLink();})",
+    URL: CONSTANTS.SIDEBAR.ABOUT
+  },
+  {
+    CLICK_LINK: "(function click(page) {page.sidebar.clickLogoutSidebarLink();})",
+    URL: CONSTANTS.SIDEBAR.LOGOUT
+  },
+]
+
+options.forEach(({CLICK_LINK, URL}) =>{
+  describe(`#005: Sidebar redirect capabilities`, () => {
+    
+    before(function() {
+      LoginPage.open();
+    });
+
+    it(`should login successfully`, () => {
+      //ACTIONS
+      LoginBehaviour.login(CONSTANTS.USER.STANDARD.USERNAME, CONSTANTS.USER.STANDARD.PASSWORD);
+      //ASSERTIONS
+      InventoryBehaviour.expectToBeInBaseState();
+      expect(InventoryPage.header.secondaryTitleText).toBe(CONSTANTS.HEADER.INVENTORY);
+      expect(browser.getUrl()).toBe(CONSTANTS.SAUCE_DEMO_URL.BASE + CONSTANTS.SAUCE_DEMO_URL.INVENTORY);
+    });
+
+    it(`should open the sidebar successfully`, () => {
+      //ACTIONS
+      InventoryPage.header.clickBurgerButton();
+      //ASSERTIONS
+      expect(InventoryPage.sidebar.aboutSidebarLink).toBeDisplayed();
+      expect(InventoryPage.sidebar.inventorySidebarLink).toBeDisplayed();
+      expect(InventoryPage.sidebar.logoutSidebarLink).toBeDisplayed();
+      expect(InventoryPage.sidebar.resetSidebarLink).toBeDisplayed();
+    });
+
+    it(`should navigate to ${URL} successfully`, () => {
+      //ACTIONS
+      eval(CLICK_LINK)(InventoryPage); //clicks the link for the current object iteration
+      //ASSERTIONS
+      InventoryPage.waitForUrlToBe(URL);
+      expect(browser.getUrl()).toContain(URL);
+    });
+  });
+});
+
+describe(`#006: Sidebar reset app state option`, () => {
   
-  before( function() {
+  before(function() {
     LoginPage.open();
   });
 

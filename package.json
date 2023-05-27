@@ -19,7 +19,9 @@
         "wdio": "wdio run wdio.conf.ts",
         "login": "wdio wdio.conf.ts --spec login",
         "sidebar": "wdio wdio.conf.ts --spec sidebar",
-        "checkout": "wdio wdio.conf.ts --spec checkout"
+        "footer": "wdio wdio.conf.ts --spec footer",
+        "checkout": "wdio wdio.conf.ts --spec checkout",
+        "end2end": "wdio wdio.conf.ts --spec end2end"
     },
     "devDependencies": {
         "ts-node": "^10.8.1",

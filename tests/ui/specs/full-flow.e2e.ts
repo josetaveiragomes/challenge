@@ -39,7 +39,7 @@ const items_final_order = [
 users.forEach(({USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, POSTAL_CODE, PAYMENT_INFO, SHIPPING_INFO}) =>{
   describe(`#023: Happy Path for ${USERNAME}`, () => {
     
-    before( function() {
+    before(function() {
       LoginPage.open();
     });
 
@@ -63,6 +63,20 @@ users.forEach(({USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, POSTAL_CODE, PAYMENT_
     it(`should add the ${CONSTANTS.ITEM.ONESIE.TITLE} to the bag (1)`, () => {
       //ACTIONS
       InventoryBehaviour.addItemToCart(CONSTANTS.ITEM.ONESIE.TITLE);
+      //ASSERTIONS
+      expect(InventoryPage.header.cartBadgeText).toBe("1");
+    });
+
+    it(`should add the ${CONSTANTS.ITEM.FLEECE_JACKET.TITLE} to the bag (2)`, () => {
+      //ACTIONS
+      InventoryBehaviour.addItemToCart(CONSTANTS.ITEM.FLEECE_JACKET.TITLE);
+      //ASSERTIONS
+      expect(InventoryPage.header.cartBadgeText).toBe("2");
+    });
+
+    it(`should remove the ${CONSTANTS.ITEM.FLEECE_JACKET.TITLE} from the bag (1)`, () => {
+      //ACTIONS
+      InventoryBehaviour.removeItemFromCart(CONSTANTS.ITEM.FLEECE_JACKET.TITLE);
       //ASSERTIONS
       expect(InventoryPage.header.cartBadgeText).toBe("1");
     });
