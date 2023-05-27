@@ -31,6 +31,10 @@ class Sidebar {
     return elem;
   }
 
+  resetAppState(): void {
+    this.resetSidebarLink.click();
+  }
+
 }
 
 export default new Sidebar;

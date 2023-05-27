@@ -28,6 +28,10 @@ class Header {
     return elem;
   }
 
+  clickBurgerButton(): void {
+    this.burgerButton.click();
+  }
+
   get cart(): WebdriverIO.Element {
     const elem = $('[id="shopping_cart_container"]');
     elem.waitForClickable();

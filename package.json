@@ -17,7 +17,8 @@
     },
     "scripts": {
         "wdio": "wdio run wdio.conf.ts",
-        "login": "wdio wdio.conf.ts --spec login"
+        "login": "wdio wdio.conf.ts --spec login",
+        "sidebar": "wdio wdio.conf.ts --spec sidebar"
     },
     "devDependencies": {
         "ts-node": "^10.8.1",

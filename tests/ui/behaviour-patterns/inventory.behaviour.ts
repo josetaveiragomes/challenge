@@ -33,6 +33,10 @@ class InventoryBehaviour extends Behaviour {
     expect(InventoryPage.itemButton(InventoryPage.getItemByName(name)).getText()).toBe(CONSTANTS.BUTTON.REMOVE);
   }
 
+  getItemButtonText(name: string): string {
+    return InventoryPage.itemButton(InventoryPage.getItemByName(name)).getText();
+  }
+
   openItem(name: string): void {
     InventoryPage.itemTitleLink(InventoryPage.getItemByName(name)).click();
   }
