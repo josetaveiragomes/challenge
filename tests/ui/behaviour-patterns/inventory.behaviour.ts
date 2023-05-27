@@ -22,10 +22,19 @@ class InventoryBehaviour extends Behaviour {
     CONSTANTS.ITEM.BACKPACK,
   ]
 
+  selectFilter(option: string): void {
+    InventoryPage.filter.click();
+    InventoryPage.selectFilterOption(option);
+  }
+
   addItemToCart(name: string): void {
     expect(InventoryPage.itemButton(InventoryPage.getItemByName(name)).getText()).toBe(CONSTANTS.BUTTON.ADD_TO_CART);
     InventoryPage.itemButton(InventoryPage.getItemByName(name)).click();
     expect(InventoryPage.itemButton(InventoryPage.getItemByName(name)).getText()).toBe(CONSTANTS.BUTTON.REMOVE);
+  }
+
+  openItem(name: string): void {
+    InventoryPage.itemTitleLink(InventoryPage.getItemByName(name)).click();
   }
 
   expectToBeInBaseState(): void {

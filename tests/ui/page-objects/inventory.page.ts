@@ -10,13 +10,13 @@ class InventoryPage extends Page {
   }
 
   get filter(): WebdriverIO.Element {
-    const elem = $('[data-test="product_sort_container"]');
+    const elem = $('select[data-test="product_sort_container"]');
     elem.waitForDisplayed();
     return elem;
   }
 
   get filterActiveOption(): WebdriverIO.Element {
-    const elem = $('[class="select_container"]').$('[class="active_option"]');
+    const elem = $('span[class="select_container"]').$('span[class="active_option"]');
     elem.waitForDisplayed();
     return elem;
   }
@@ -30,63 +30,68 @@ class InventoryPage extends Page {
   }
 
   get itemList(): WebdriverIO.Element {
-    const elem = $('[class="inventory_list"]');
+    const elem = $('div[class="inventory_list"]');
     elem.waitForDisplayed();
     return elem;
   }
 
   get items(): WebdriverIO.ElementArray {
-    return this.itemList.$$('[class="inventory_item"]');
+    return this.itemList.$$('div[class="inventory_item"]');
   }
 
   getItemByName(name: string): WebdriverIO.Element {
     const items = this.items;
     for (let i = 0; i < items.length; i++){
-      if (this.itemTitle(items[i]) == name){
+      if (this.itemTitleText(items[i]) == name){
         return items[i];
       }
     }
     return this.itemList;
   }
 
-  itemImage(item: WebdriverIO.Element): string {
+  itemImageText(item: WebdriverIO.Element): string {
     item.waitForDisplayed();
-    return item.$('[class="inventory_item_img"]').getAttribute('src');
+    return item.$('img[class="inventory_item_img"]').getAttribute('src');
   }
 
-  itemDescription(item: WebdriverIO.Element): string {
+  itemDescriptionText(item: WebdriverIO.Element): string {
     item.waitForDisplayed();
-    return item.$('[class="inventory_item_desc"]').getText();
+    return item.$('div[class="inventory_item_desc"]').getText();
   }
 
-  itemTitle(item: WebdriverIO.Element): string {
+  itemTitleText(item: WebdriverIO.Element): string {
     item.waitForDisplayed();
-    return item.$('[class="inventory_item_name"]').getText();
+    return item.$('div[class="inventory_item_name"]').getText();
   }
 
-  itemPrice(item: WebdriverIO.Element): string {
+  itemPriceText(item: WebdriverIO.Element): string {
     item.waitForDisplayed();
-    return item.$('[class="inventory_item_price"]').getText();
+    return item.$('div[class="inventory_item_price"]').getText();
   }
 
-  itemTitleLink(item: WebdriverIO.Element): string {
+  itemTitleLink(item: WebdriverIO.Element): WebdriverIO.Element {
     item.waitForDisplayed();
-    return item.$('[class="inventory_item_label"]').$('a').getAttribute('id');
+    return item.$('div[class="inventory_item_label"]').$('a');
   }
 
-  itemImageLink(item: WebdriverIO.Element): string {
+  itemTitleLinkId(item: WebdriverIO.Element): string {
     item.waitForDisplayed();
-    return item.$('[class="inventory_item_img"]').$('a').getAttribute('id');
+    return this.itemTitleLink(item).getAttribute('id');
+  }
+
+  itemImageLinkId(item: WebdriverIO.Element): string {
+    item.waitForDisplayed();
+    return item.$('div[class="inventory_item_img"]').$('a').getAttribute('id');
   }
 
   itemId(item: WebdriverIO.Element): string {
     item.waitForDisplayed();
-    return this.itemTitleLink(item).split('_')[1];
+    return this.itemTitleLinkId(item).split('_')[1];
   }
   
   itemButton(item: WebdriverIO.Element): WebdriverIO.Element {
     item.waitForDisplayed();
-    return item.$('[class="pricebar"]').$('button');
+    return item.$('div[class="pricebar"]').$('button');
   }
 
   itemButtonText(item: WebdriverIO.Element): string {

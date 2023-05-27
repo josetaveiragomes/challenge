@@ -31,7 +31,7 @@ exports.config = {
   connectionRetryCount: 3,
   specFileRetries: 0,
   services: [
-    'selenium-standalone', 
+    //'selenium-standalone', 
     [TimelineService]
   ],
   framework: 'mocha',

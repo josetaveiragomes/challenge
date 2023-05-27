@@ -9,9 +9,16 @@ export default {
     CHECKOUT_COMPLETE: "/checkout-complete.html"
   },
   BUTTON: {
+    LOGIN: "Login",
     ADD_TO_CART: "Add to cart",
     REMOVE: "Remove",
-
+    BACK_TO_PRODUCTS: "Back to products",
+    CONTINUE_SHOPPING: "Continue Shopping",
+    CHECKOUT: "Checkout",
+    CANCEL: "Cancel",
+    CONTINUE: "Continue",
+    FINISH: "Finish",
+    BACK_HOME: "Back Home",
   },
   SOCIAL: {
     TWITTER: 'https://twitter.com/saucelabs',

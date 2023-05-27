@@ -12,8 +12,8 @@ class Page {
     this.path = path;
   }
 
-  open(): void {
-    browser.url(this.url + this.path);
+  open(extraOption = ''): void {
+    browser.url(this.url + this.path + extraOption);
     this.waitForPageLoad();
   }
 
