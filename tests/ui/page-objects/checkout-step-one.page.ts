@@ -49,6 +49,16 @@ class CheckoutStepOnePage extends Page {
     return elem;
   } 
 
+  get errorMessage(): WebdriverIO.Element {
+    const elem = $(`h3[data-test="error"]`);
+    elem.waitForDisplayed();
+    return elem;
+  } 
+
+  get errorMessageText(): string {
+    return this.errorMessage.getText();
+  }
+
   clickContinueButton(): void {
     this.continueButton.click();
   }

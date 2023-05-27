@@ -42,6 +42,12 @@ export default {
       INVALID: 'Epic sadface: Username and password do not match any user in this service',
       MISSING_USERNAME: 'Epic sadface: Username is required',
       MISSING_PASSWORD: 'Epic sadface: Password is required',
+      MISSING_FIRST_NAME: 'Error: First Name is required',
+      MISSING_LAST_NAME: 'Error: Last Name is required',
+      MISSING_POSTAL_CODE: 'Error: Postal Code is required',
+      INVALID_FIRST_NAME: 'Error: Invalid First Name',
+      INVALID_LAST_NAME: 'Error: Invalid Last Name',
+      INVALID_POSTAL_CODE: 'Error: Invalid Postal Code',
     },
     PURCHASE_COMPLETE: {
       HEADER: "Thank you for your order!",
