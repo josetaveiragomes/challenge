@@ -5,6 +5,7 @@ exports.config = {
   specs: ['./tests/ui/specs/**/*.ts'],
   suites: {
     login: ['./tests/ui/specs/login.e2e.ts'],
+    session: ['./tests/ui/specs/session.e2e.ts'],
     sidebar: ['./tests/ui/specs/sidebar.e2e.ts'],
     footer: ['./tests/ui/specs/footer.e2e.ts'],
     checkout: ['./tests/ui/specs/checkout.e2e.ts'],

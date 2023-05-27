@@ -53,6 +53,7 @@ export default {
       INVALID_FIRST_NAME: 'Error: Invalid First Name',
       INVALID_LAST_NAME: 'Error: Invalid Last Name',
       INVALID_POSTAL_CODE: 'Error: Invalid Postal Code',
+      SESSION_EXPIRED: 'Error: Session expired, please log in again.',
     },
     PURCHASE_COMPLETE: {
       HEADER: "Thank you for your order!",

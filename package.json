@@ -18,6 +18,7 @@
     "scripts": {
         "wdio": "wdio run wdio.conf.ts",
         "login": "wdio wdio.conf.ts --spec login",
+        "session": "wdio wdio.conf.ts --spec session",
         "sidebar": "wdio wdio.conf.ts --spec sidebar",
         "footer": "wdio wdio.conf.ts --spec footer",
         "checkout": "wdio wdio.conf.ts --spec checkout",

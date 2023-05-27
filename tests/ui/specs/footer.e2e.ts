@@ -24,7 +24,7 @@ const options = [
   },
 ]
 options.forEach(({SOCIAL, URL}) =>{
-  describe(`#008: Social links redirect`, () => {
+  describe(`#008: Social links redirect for ${SOCIAL}`, () => {
     
     before(function() {
       LoginPage.open();
