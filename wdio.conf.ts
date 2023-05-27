@@ -3,6 +3,10 @@ const video = require('wdio-video-reporter');
 
 exports.config = {
   specs: ['./tests/ui/specs/**/*.ts'],
+  suites: {
+    login: ['./tests/ui/specs/login.e2e.ts'],
+    end2end: ['./tests/ui/specs/full-flow.ts'],
+  },
   exclude: [],
   maxInstances: 5,
   capabilities: [
@@ -31,7 +35,7 @@ exports.config = {
   connectionRetryCount: 3,
   specFileRetries: 0,
   services: [
-    //'selenium-standalone', 
+    'selenium-standalone', 
     [TimelineService]
   ],
   framework: 'mocha',

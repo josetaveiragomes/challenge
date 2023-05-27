@@ -1,10 +1,9 @@
 class Header {
 
-  waitForComponentElements(): boolean{
+  waitForComponentElements(): void{
     this.burgerButton.waitForDisplayed();
     this.title.waitForDisplayed();
     this.cart.waitForDisplayed();
-    return true;
   }
 
   get primaryHeader(): WebdriverIO.Element {
@@ -25,13 +24,13 @@ class Header {
 
   get burgerButton(): WebdriverIO.Element {
     const elem = $('[id="react-burger-menu-btn"]');
-    elem.waitForDisplayed();
+    elem.waitForClickable();
     return elem;
   }
 
   get cart(): WebdriverIO.Element {
     const elem = $('[id="shopping_cart_container"]');
-    elem.waitForDisplayed();
+    elem.waitForClickable();
     return elem;
   }
 
@@ -67,7 +66,7 @@ class Header {
 
   get secondaryHeaderButton(): WebdriverIO.Element {
     const elem = $('[class="header_secondary_container"]').$('button');
-    elem.waitForDisplayed();
+    elem.waitForClickable();
     return elem;
   }
 

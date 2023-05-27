@@ -7,17 +7,37 @@ class CartPage extends Page {
     this.waitForPageLoad();
     this.backButton.waitForDisplayed();
     this.checkoutButton.waitForDisplayed();
-
+    this.itemList.waitForDisplayed();
   }
 
-  get cartList(): WebdriverIO.Element {
+  get itemList(): WebdriverIO.Element {
     const elem = $('div[class="cart_list"]');
     elem.waitForDisplayed();
     return elem;
   }
 
-  get cartItems(): WebdriverIO.ElementArray {
-    return this.cartList.$$('div[class="cart_item"]');
+  get items(): WebdriverIO.ElementArray {
+    return this.itemList.$$('div[class="cart_item"]');
+  }
+
+  itemTitleText(item: WebdriverIO.Element): string {
+    item.waitForDisplayed();
+    return item.$('div[class="inventory_item_name"]').getText();
+  }
+
+  itemTitleLink(item: WebdriverIO.Element): WebdriverIO.Element {
+    item.waitForDisplayed();
+    return item.$('div[class="cart_item_label"]').$('a');
+  }
+
+  itemTitleLinkId(item: WebdriverIO.Element): string {
+    item.waitForDisplayed();
+    return this.itemTitleLink(item).getAttribute('id');
+  }
+
+  itemId(item: WebdriverIO.Element): string {
+    item.waitForDisplayed();
+    return this.itemTitleLinkId(item).split('_')[1];
   }
 
   get backButton(): WebdriverIO.Element {
@@ -28,8 +48,27 @@ class CartPage extends Page {
 
   get checkoutButton(): WebdriverIO.Element {
     const elem = $('button[data-test="checkout"]');
-    elem.waitForDisplayed();
+    elem.waitForClickable();
     return elem;
+  }
+
+  clickCheckoutButton(): void {
+    this.checkoutButton.click();
+  }
+
+  getItemByName(name: string): WebdriverIO.Element {
+    const items = this.items;
+    for (let i = 0; i < items.length; i++){
+      if (this.itemTitleText(items[i]) == name){
+        return items[i];
+      }
+    }
+    return this.itemList;
+  }
+
+  itemButton(item: WebdriverIO.Element): WebdriverIO.Element {
+    item.waitForClickable();
+    return item.$('div[class="item_pricebar"]').$('button');
   }
 
 }

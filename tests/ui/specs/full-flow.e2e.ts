@@ -1,12 +1,19 @@
 //PAGE OBJECTS
 import ItemPage from '../page-objects/item.page';
+import CartPage from '../page-objects/cart.page';
 import LoginPage from '../page-objects/login.page';
 import InventoryPage from '../page-objects/inventory.page';
+import CheckoutStepOnePage from '../page-objects/checkout-step-one.page';
+import CheckoutStepTwoPage from '../page-objects/checkout-step-two.page';
+import CheckoutCompletePage from '../page-objects/checkout-complete.page';
 
-//BEHAVIOURS
+//BEHAVIOUR PATTERNS
 import ItemBehaviour from '../behaviour-patterns/item.behaviour';
-import LoginBehaviour from '../behaviour-patterns/login.behaviour'
+import CartBehaviour from '../behaviour-patterns/cart.behaviour';
+import LoginBehaviour from '../behaviour-patterns/login.behaviour';
 import InventoryBehaviour from '../behaviour-patterns/inventory.behaviour';
+import CheckoutStepOneBehaviour from '../behaviour-patterns/checkout-step-one.behaviour';
+import CheckoutStepTwoBehaviour from '../behaviour-patterns/checkout-step-two.behaviour';
 
 //CONSTANTS
 import CONSTANTS from "../constants";
@@ -14,11 +21,22 @@ import CONSTANTS from "../constants";
 // TEST DATA
 const users = [
   CONSTANTS.USER.STANDARD,
-  // CONSTANTS.USER.PROBLEM,
-  // CONSTANTS.USER.PERFORMANCE_GLITCH,
+  CONSTANTS.USER.PROBLEM,
+  CONSTANTS.USER.PERFORMANCE_GLITCH,
 ]
 
-users.forEach(({USERNAME, PASSWORD}) =>{
+const items_added_order = [
+  CONSTANTS.ITEM.ONESIE,
+  CONSTANTS.ITEM.FLEECE_JACKET,
+  CONSTANTS.ITEM.BIKE_LIGHT,
+]
+
+const items_final_order = [
+  CONSTANTS.ITEM.ONESIE,
+  CONSTANTS.ITEM.BIKE_LIGHT,
+]
+
+users.forEach(({USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, POSTAL_CODE, PAYMENT_INFO, SHIPPING_INFO}) =>{
   describe(`#023: Happy Path for ${USERNAME}`, () => {
     
     before( function() {
@@ -27,18 +45,19 @@ users.forEach(({USERNAME, PASSWORD}) =>{
 
     it(`should login successfully with ${USERNAME}`, () => {
       //ACTIONS
-      LoginBehaviour.login(USERNAME, PASSWORD, true);
+      LoginBehaviour.login(USERNAME, PASSWORD);
       //ASSERTIONS
       InventoryBehaviour.expectToBeInBaseState();
       expect(InventoryPage.header.secondaryTitleText).toBe(CONSTANTS.HEADER.INVENTORY);
+      expect(browser.getUrl()).toBe(CONSTANTS.SAUCE_DEMO_URL.BASE + CONSTANTS.SAUCE_DEMO_URL.INVENTORY);
     });
 
     it(`should change the filter from AZ to ZA`, () => {
       //ACTIONS
       InventoryBehaviour.selectFilter(CONSTANTS.FILTER.ZA.VALUE);
       //ASSERTIONS
-      InventoryBehaviour.expectItemsToBeInReverseAlphabeticalOrder();
       expect(InventoryPage.filterText).toBe(CONSTANTS.FILTER.ZA.TEXT);
+      InventoryBehaviour.expectItemsToBeInReverseAlphabeticalOrder();
     });
 
     it(`should add the ${CONSTANTS.ITEM.ONESIE.TITLE} to the bag (1)`, () => {
@@ -93,33 +112,67 @@ users.forEach(({USERNAME, PASSWORD}) =>{
       ItemPage.header.openCart();
       //ASSERTIONS
       expect(ItemPage.header.cartBadgeText).toBe("3");
+      CartBehaviour.expectItemsToBeInOrder(items_added_order);
       expect(InventoryPage.header.secondaryTitleText).toBe(CONSTANTS.HEADER.CART);
-
-      //ASSERT ITEMS ADDED ARE IN THE BAG (BY ORDER OF ADDITION)
-      
       expect(browser.getUrl()).toBe(CONSTANTS.SAUCE_DEMO_URL.BASE + CONSTANTS.SAUCE_DEMO_URL.CART);
-
     });
 
     it(`should remove the ${CONSTANTS.ITEM.FLEECE_JACKET.TITLE} item from the bag (2)`, () => {
-      
+      //ACTIONS
+      CartBehaviour.removeItem(CONSTANTS.ITEM.FLEECE_JACKET.TITLE);
+      //ASSERTIONS
+      expect(ItemPage.header.cartBadgeText).toBe("2");
+      CartBehaviour.expectItemsToBeInOrder(items_final_order);
     });
 
     it(`should go to checkout page one (using the Checkout button)`, () => {
-      
+      //ACTIONS
+      CartPage.clickCheckoutButton();
+      //ASSERTIONS
+      expect(ItemPage.header.cartBadgeText).toBe("2");
+      expect(CheckoutStepOnePage.checkoutInfo).toBeDisplayed();
+      expect(CheckoutStepOnePage.firstNameInputValue).toBe(CONSTANTS.EMPTY_STRING);
+      expect(CheckoutStepOnePage.lastNameInputValue).toBe(CONSTANTS.EMPTY_STRING);
+      expect(CheckoutStepOnePage.postalCodeInputValue).toBe(CONSTANTS.EMPTY_STRING);
+      expect(InventoryPage.header.secondaryTitleText).toBe(CONSTANTS.HEADER.CHECKOUT_ONE);
+      expect(browser.getUrl()).toBe(CONSTANTS.SAUCE_DEMO_URL.BASE + CONSTANTS.SAUCE_DEMO_URL.CHECKOUT_STEP_ONE);
     });
 
     it(`should go to checkout page two (filling in the details and pressing the Continue button)`, () => {
-      
+      //ACTIONS
+      CheckoutStepOneBehaviour.fillForm(FIRST_NAME, LAST_NAME, POSTAL_CODE);
+      CheckoutStepOnePage.clickContinueButton();
+      //ASSERTIONS
+      CheckoutStepTwoBehaviour.expectItemsToBeInOrder(items_final_order);
+      expect(CheckoutStepTwoPage.paymentInformationText).toBe(PAYMENT_INFO);
+      expect(CheckoutStepTwoPage.shippingInformationText).toBe(SHIPPING_INFO);
+      expect(InventoryPage.header.secondaryTitleText).toBe(CONSTANTS.HEADER.CHECKOUT_TWO);
+      CheckoutStepTwoBehaviour.validateTotals();
+      expect(CheckoutStepTwoPage.tax).toBe(1.44);
+      expect(CheckoutStepTwoPage.total).toBe(19.42);
+      expect(CheckoutStepTwoPage.subtotal).toBe(17.98);
+      expect(browser.getUrl()).toBe(CONSTANTS.SAUCE_DEMO_URL.BASE + CONSTANTS.SAUCE_DEMO_URL.CHECKOUT_STEP_TWO);
     });
 
     it(`should complete the purchase successfully`, () => {
-      
+      //ACTIONS
+      CheckoutStepTwoPage.clickFinishButton();
+      //ASSERTIONS
+      expect(CheckoutCompletePage.header.isCartBadgeDisplayed(false)).not.toBeDisplayed();
+      expect(CheckoutCompletePage.checkmarkIcon).toBeDisplayed();
+      expect(CheckoutCompletePage.thankYouHeaderText).toBe(CONSTANTS.MESSAGE.PURCHASE_COMPLETE.HEADER);
+      expect(CheckoutCompletePage.thankYouBodyText).toBe(CONSTANTS.MESSAGE.PURCHASE_COMPLETE.BODY);
+      expect(CheckoutCompletePage.homeButton).toBeDisplayed();
+      expect(browser.getUrl()).toBe(CONSTANTS.SAUCE_DEMO_URL.BASE + CONSTANTS.SAUCE_DEMO_URL.CHECKOUT_COMPLETE);
     });
 
     it(`should go back to inventory page (using the Back Home button)`, () => {
-      
+      //ACTIONS
+      CheckoutCompletePage.clickHomeButton();
+      //ASSERTIONS
+      InventoryBehaviour.expectToBeInBaseState();
+      expect(InventoryPage.header.secondaryTitleText).toBe(CONSTANTS.HEADER.INVENTORY);
+      expect(browser.getUrl()).toBe(CONSTANTS.SAUCE_DEMO_URL.BASE + CONSTANTS.SAUCE_DEMO_URL.INVENTORY);
     });
-
   });
 });

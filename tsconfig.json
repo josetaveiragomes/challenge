@@ -14,8 +14,6 @@
             "node", 
             "webdriverio/sync", 
             "@wdio/mocha-framework",
-            "@wdio/intercept",
-            "@wdio/selenium-standalone",
         ]
     }
 }

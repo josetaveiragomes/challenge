@@ -1,12 +1,11 @@
 class Footer {
 
-  waitForComponentElements(): boolean{
+  waitForComponentElements(): void{
     this.footer.waitForDisplayed();
     this.twitterSocial.waitForDisplayed();
     this.facebookSocial.waitForDisplayed();
     this.linkedinSocial.waitForDisplayed();
     this.footerCopy.waitForDisplayed();
-    return true;
   }
 
   get footer(): WebdriverIO.Element {

@@ -34,6 +34,10 @@ class LoginPage extends Page{
     elem.waitForDisplayed();
     return elem;
   }
+
+  get errorMessageText(): string {
+    return this.errorMessage.getText();
+  }
   
 }
 

@@ -1,5 +1,5 @@
 {
-    "name": "mtg-testing-framework",
+    "name": "jose-taveira-challenge",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -12,12 +12,12 @@
         "chai": "^4.3.6",
         "chromedriver": "latest",
         "wdio-chromedriver-service": "^7.3.2",
-        "wdio-intercept-service": "^4.2.2",
         "wdio-timeline-reporter": "^5.1.4",
         "wdio-video-reporter": "^3.2.1"
     },
     "scripts": {
-        "wdio": "wdio run wdio.conf.ts"
+        "wdio": "wdio run wdio.conf.ts",
+        "login": "wdio wdio.conf.ts --spec login"
     },
     "devDependencies": {
         "ts-node": "^10.8.1",

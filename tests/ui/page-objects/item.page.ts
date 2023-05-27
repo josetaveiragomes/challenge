@@ -55,7 +55,7 @@ class ItemPage extends Page {
 
   get itemButton(): WebdriverIO.Element {
     const elem = $('div[class="inventory_details_desc_container"]').$('button');
-    elem.waitForDisplayed();
+    elem.waitForClickable();
     return elem;
   }
 

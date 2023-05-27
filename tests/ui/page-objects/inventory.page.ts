@@ -90,7 +90,7 @@ class InventoryPage extends Page {
   }
   
   itemButton(item: WebdriverIO.Element): WebdriverIO.Element {
-    item.waitForDisplayed();
+    item.waitForClickable();
     return item.$('div[class="pricebar"]').$('button');
   }
 

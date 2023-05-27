@@ -1,4 +1,5 @@
 export default {
+  EMPTY_STRING: "",
   SAUCE_DEMO_URL: {
     BASE: "https://www.saucedemo.com",
     INVENTORY: "/inventory.html",
@@ -41,24 +42,64 @@ export default {
       INVALID: 'Epic sadface: Username and password do not match any user in this service',
       MISSING_USERNAME: 'Epic sadface: Username is required',
       MISSING_PASSWORD: 'Epic sadface: Password is required',
+    },
+    PURCHASE_COMPLETE: {
+      HEADER: "Thank you for your order!",
+      BODY: "Your order has been dispatched, and will arrive just as fast as the pony can get there!",
     }
   },
   USER: {
     STANDARD: {
       USERNAME: "standard_user",
       PASSWORD: "secret_sauce",
+      FIRST_NAME: "Jose",
+      LAST_NAME: "Taveira",
+      POSTAL_CODE: "4000-101",
+      PAYMENT_INFO: "SauceCard #31337",
+      SHIPPING_INFO: "Free Pony Express Delivery!",
     },
     LOCKED_OUT: {
       USERNAME: "locked_out_user",
       PASSWORD: "secret_sauce",
+      FIRST_NAME: "Fui",
+      LAST_NAME: "Exilado",
+      POSTAL_CODE: "4000-101",
+      PAYMENT_INFO: "SauceCard #31337",
+      SHIPPING_INFO: "Free Pony Express Delivery!",
+      MESSAGE: "Epic sadface: Sorry, this user has been locked out.",
     },
     PROBLEM: {
       USERNAME: "problem_user",
       PASSWORD: "secret_sauce",
+      FIRST_NAME: "Estou",
+      LAST_NAME: "Estragado",
+      POSTAL_CODE: "4000-101",
+      PAYMENT_INFO: "SauceCard #31337",
+      SHIPPING_INFO: "Free Pony Express Delivery!",
     },
     PERFORMANCE_GLITCH: {
       USERNAME: "performance_glitch_user",
       PASSWORD: "secret_sauce",
+      FIRST_NAME: "Sou",
+      LAST_NAME: "Lento",
+      POSTAL_CODE: "4000-101",
+      PAYMENT_INFO: "SauceCard #31337",
+      SHIPPING_INFO: "Free Pony Express Delivery!",
+    },
+    INVALID_ONE: {
+      USERNAME: "balula",
+      PASSWORD: "balula",
+      MESSAGE: "Epic sadface: Username and password do not match any user in this service",
+    },
+    INVALID_TWO: {
+      USERNAME: "",
+      PASSWORD: "balula",
+      MESSAGE: "Epic sadface: Username is required",
+    },
+    INVALID_THREE: {
+      USERNAME: "balula",
+      PASSWORD: "",
+      MESSAGE: "Epic sadface: Password is required",
     },
   },
   FILTER: {
