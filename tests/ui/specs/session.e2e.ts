@@ -9,7 +9,6 @@ import InventoryBehaviour from '../behaviour-patterns/inventory.behaviour';
 //CONSTANTS
 import CONSTANTS from "../constants";
 
-
 describe(`#004 & #005: Session cookie expires and saves cart data`, () => {
   
   before(function() {
