@@ -9,7 +9,7 @@ exports.config = {
     sidebar: ['./tests/ui/specs/sidebar.e2e.ts'],
     footer: ['./tests/ui/specs/footer.e2e.ts'],
     checkout: ['./tests/ui/specs/checkout.e2e.ts'],
-    end2end: ['./tests/ui/specs/full-flow.ts'],
+    end2end: ['./tests/ui/specs/full-flow.e2e.ts'],
   },
   exclude: [],
   maxInstances: 5,
@@ -20,7 +20,7 @@ exports.config = {
       acceptInsecureCerts: true,
       'goog:chromeOptions': { 
         args: [
-          //"--headless",
+          "--headless",
           "--no-sandbox",
           "--ignore-certificate-errors",
           "--allow-insecure-localhost",

@@ -9,46 +9,37 @@ import InventoryBehaviour from '../behaviour-patterns/inventory.behaviour';
 //CONSTANTS
 import CONSTANTS from "../constants";
 
+//TEST DATA
 const options = [
-  {
-    SOCIAL: "facebook",
-    URL: CONSTANTS.SOCIAL.FACEBOOK,
-  },
-  {
-    SOCIAL: "twitter",
-    URL: CONSTANTS.SOCIAL.TWITTER,
-  },  
-  {
-    SOCIAL: "linkedin",
-    URL: CONSTANTS.SOCIAL.LINKEDIN,
-  },
+  CONSTANTS.SOCIAL.FACEBOOK,
+  CONSTANTS.SOCIAL.TWITTER,
+  CONSTANTS.SOCIAL.LINKEDIN,
 ]
-options.forEach(({SOCIAL, URL}) =>{
-  describe(`#008: Social links redirect for ${SOCIAL}`, () => {
-    
-    before(function() {
-      LoginPage.open();
-    });
 
-    it(`should login successfully`, () => {
-      //ACTIONS
-      LoginBehaviour.login(CONSTANTS.USER.STANDARD.USERNAME, CONSTANTS.USER.STANDARD.PASSWORD);
-      //ASSERTIONS
-      InventoryBehaviour.expectToBeInBaseState();
-      expect(InventoryPage.header.secondaryTitleText).toBe(CONSTANTS.HEADER.INVENTORY);
-      expect(browser.getUrl()).toBe(CONSTANTS.SAUCE_DEMO_URL.BASE + CONSTANTS.SAUCE_DEMO_URL.INVENTORY);
-    });
+describe(`#008: Social links redirect`, () => {
+  
+  before(function() {
+    LoginPage.open();
+  });
+
+  it(`should login successfully`, () => {
+    //ACTIONS
+    LoginBehaviour.login(CONSTANTS.USER.STANDARD.USERNAME, CONSTANTS.USER.STANDARD.PASSWORD);
+    //ASSERTIONS
+    InventoryBehaviour.expectToBeInBaseState();
+    expect(InventoryPage.header.secondaryTitleText).toBe(CONSTANTS.HEADER.INVENTORY);
+    expect(browser.getUrl()).toBe(CONSTANTS.SAUCE_DEMO_URL.BASE + CONSTANTS.SAUCE_DEMO_URL.INVENTORY);
+  });
+
+  options.forEach(({TEXT, URL}) =>{
     it(`should be redirected to ${URL}`, () => {
       //ACTIONS
-      InventoryPage.footer.clickSocialLink(SOCIAL);
+      browser.switchWindow(CONSTANTS.SAUCE_DEMO_URL.BASE + CONSTANTS.SAUCE_DEMO_URL.INVENTORY);
+      InventoryPage.footer.clickSocialLink(TEXT);
       browser.switchWindow(URL);
       //ASSERTIONS
       InventoryPage.waitForUrlToBe(URL);
       expect(browser.getUrl()).toContain(URL);
-    });
-
-    after(function() {
-      browser.switchWindow(CONSTANTS.SAUCE_DEMO_URL.BASE + CONSTANTS.SAUCE_DEMO_URL.INVENTORY);
     });
   });
 });

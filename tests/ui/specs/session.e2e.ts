@@ -38,7 +38,7 @@ describe(`#004 & #005: Session cookie expires and saves cart data`, () => {
     expect(InventoryPage.header.cartBadgeText).toBe("2");
   });
 
-  it(`should delete the cookies (to simulate expiration)`, () => {
+  it(`should expire the session and show correct message`, () => {
     //ACTIONS
     browser.deleteCookies();
     InventoryPage.header.openCart();

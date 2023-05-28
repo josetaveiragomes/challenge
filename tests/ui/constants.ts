@@ -27,11 +27,20 @@ export default {
     LOGOUT: "https://www.saucedemo.com/"
   },
   SOCIAL: {
-    TWITTER: 'https://twitter.com/saucelabs',
-    FACEBOOK: 'https://www.facebook.com/saucelabs',
-    LINKEDIN: 'https://www.linkedin.com/company/sauce-labs/',
-    FOOTER: '© 2023 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy',
+    TWITTER: {
+      TEXT: 'twitter',
+      URL: 'https://twitter.com/saucelabs',
+    },
+    FACEBOOK: {
+      TEXT: 'facebook',
+      URL: 'https://www.facebook.com/saucelabs',
+    },
+    LINKEDIN: {
+      TEXT: 'linkedin',
+      URL: 'https://www.linkedin.com/company/sauce-labs/',
+    },
   },
+  FOOTER: '© 2023 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy',
   HEADER: {
     WEBSITE_TITLE: 'Swag Labs',
     INVENTORY: 'Products',

@@ -21,10 +21,10 @@ class Behaviour {
     expect(this.page.footer.twitterSocial).toBeDisplayed();
     expect(this.page.footer.facebookSocial).toBeDisplayed();
     expect(this.page.footer.linkedinSocial).toBeDisplayed();
-    expect(this.page.footer.twitterSocialLinkValue).toBe(CONSTANTS.SOCIAL.TWITTER);
-    expect(this.page.footer.facebookSocialLinkValue).toBe(CONSTANTS.SOCIAL.FACEBOOK);
-    expect(this.page.footer.linkedinSocialLinkValue).toBe(CONSTANTS.SOCIAL.LINKEDIN);
-    expect(this.page.footer.footerCopyText).toBe(CONSTANTS.SOCIAL.FOOTER)
+    expect(this.page.footer.twitterSocialLinkValue).toBe(CONSTANTS.SOCIAL.TWITTER.URL);
+    expect(this.page.footer.facebookSocialLinkValue).toBe(CONSTANTS.SOCIAL.FACEBOOK.URL);
+    expect(this.page.footer.linkedinSocialLinkValue).toBe(CONSTANTS.SOCIAL.LINKEDIN.URL);
+    expect(this.page.footer.footerCopyText).toBe(CONSTANTS.FOOTER)
   }
 
 }
