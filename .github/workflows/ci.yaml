@@ -7,11 +7,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup Node
+      - name: Setup Node 14.19.1
         uses: actions/setup-node@v3
         with:
           node-version: 14.19.1
-      - name: Install
+      - name: Update Chrome Version
         run: |
           google-chrome --version
           wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -20,7 +20,7 @@ jobs:
           apt-get install google-chrome-stable
           google-chrome --version
           npm install
-      - name: Test
+      - name: UI Tests
         run: npm run wdio
       - name: Upload Artifacts
         if: always()
