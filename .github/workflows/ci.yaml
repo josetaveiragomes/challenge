@@ -23,7 +23,7 @@ jobs:
       - name: Test
         run: npm run wdio
       - name: Upload Artifacts
-        if: failure()
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: reports
