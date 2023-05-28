@@ -120,7 +120,7 @@ export default {
       SHIPPING_INFO: "Free Pony Express Delivery!",
     },
     INVALID_ONE: {
-      USERNAME: "balula",
+      USERNAME: "balula1",
       PASSWORD: "balula",
       MESSAGE: "Epic sadface: Username and password do not match any user in this service",
     },
@@ -130,7 +130,7 @@ export default {
       MESSAGE: "Epic sadface: Username is required",
     },
     INVALID_THREE: {
-      USERNAME: "balula",
+      USERNAME: "balula2",
       PASSWORD: "",
       MESSAGE: "Epic sadface: Password is required",
     },

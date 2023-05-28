@@ -22,7 +22,7 @@ users.forEach(({USERNAME, PASSWORD, MESSAGE}) =>{
       LoginPage.open();
     });
 
-    it(`should receive an error message when trying to login`, () => {
+    it(`should receive an error message: "${MESSAGE}"`, () => {
       //ACTIONS
       LoginBehaviour.login(USERNAME, PASSWORD);
       //ASSERTIONS

@@ -12,10 +12,10 @@ exports.config = {
     end2end: ['./tests/ui/specs/full-flow.e2e.ts'],
   },
   exclude: [],
-  maxInstances: 5,
+  maxInstances: 10,
   capabilities: [
     {
-      maxInstances: 1,
+      maxInstances: 5,
       browserName: 'chrome',
       acceptInsecureCerts: true,
       'goog:chromeOptions': { 

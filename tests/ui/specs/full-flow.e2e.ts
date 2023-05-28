@@ -22,7 +22,7 @@ import CONSTANTS from "../constants";
 const users = [
   CONSTANTS.USER.STANDARD,
   CONSTANTS.USER.PROBLEM,
-  CONSTANTS.USER.PERFORMANCE_GLITCH,
+  CONSTANTS.USER.PERFORMANCE_GLITCH, //Flaky results since it timeouts ocasionally
 ]
 
 const items_added_order = [
