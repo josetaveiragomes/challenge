@@ -1,0 +1,31 @@
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: atools/chrome-headless:java11-node14-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node 14.19.1
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14.19.1
+      - name: Update Chrome Version
+        run: |
+          google-chrome --version
+          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+          echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list     
+          apt-get update
+          apt-get install google-chrome-stable
+          google-chrome --version
+          npm install
+      - name: UI Tests
+        run: npm run wdio
+      - name: Upload Artifacts
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: reports
+          path: ./reports
+          if-no-files-found: error
