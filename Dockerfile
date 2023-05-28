@@ -8,7 +8,6 @@ RUN echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' |
 RUN apt-get update
 RUN apt-get install google-chrome-stable
 RUN google-chrome --version
-RUN npm install
 
 ENTRYPOINT ["tail"]
 CMD ["-f","/dev/null"]
