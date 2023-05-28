@@ -22,9 +22,21 @@ export default {
     BACK_HOME: "Back Home",
   },
   SIDEBAR: {
-    ALL_ITEMS: "https://www.saucedemo.com/inventory.html",
-    ABOUT: "https://saucelabs.com/",
-    LOGOUT: "https://www.saucedemo.com/"
+    ALL_ITEMS: {
+      OPTION: 'All items',
+      CLICK_LINK: "(function click(page) {page.sidebar.clickInventorySidebarLink();})",
+      URL: "https://www.saucedemo.com/inventory.html",
+    },
+    ABOUT: {
+      OPTION: 'About',
+      CLICK_LINK: "(function click(page) {page.sidebar.clickAboutSidebarLink();})",
+      URL: "https://saucelabs.com/",
+    },
+    LOGOUT: {
+      OPTION: 'Logout',
+      CLICK_LINK: "(function click(page) {page.sidebar.clickLogoutSidebarLink();})",
+      URL: "https://www.saucedemo.com/",
+    },
   },
   SOCIAL: {
     TWITTER: {
@@ -184,5 +196,5 @@ export default {
       PRICE: "$49.99",
       IMAGE: "/static/media/sauce-pullover-1200x1500.51d7ffaf.jpg",
     },
-  }
+  },
 };

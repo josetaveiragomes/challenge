@@ -2,7 +2,7 @@
 import LoginPage from '../page-objects/login.page';
 import InventoryPage from '../page-objects/inventory.page';
 
-//BEHAVIOURS
+//BEHAVIOUR PATTERNS
 import LoginBehaviour from '../behaviour-patterns/login.behaviour';
 import InventoryBehaviour from '../behaviour-patterns/inventory.behaviour';
 
@@ -11,23 +11,14 @@ import CONSTANTS from "../constants";
 
 //TEST DATA
 const options = [
-  {
-    CLICK_LINK: "(function click(page) {page.sidebar.clickInventorySidebarLink();})",
-    URL: CONSTANTS.SIDEBAR.ALL_ITEMS
-  },
-  {
-    CLICK_LINK: "(function click(page) {page.sidebar.clickAboutSidebarLink();})",
-    URL: CONSTANTS.SIDEBAR.ABOUT
-  },
-  {
-    CLICK_LINK: "(function click(page) {page.sidebar.clickLogoutSidebarLink();})",
-    URL: CONSTANTS.SIDEBAR.LOGOUT
-  },
+  CONSTANTS.SIDEBAR.ALL_ITEMS,
+  CONSTANTS.SIDEBAR.ABOUT,
+  CONSTANTS.SIDEBAR.LOGOUT,
 ]
 
-options.forEach(({CLICK_LINK, URL}) =>{
-  describe(`#005: Sidebar redirect capabilities`, () => {
-    
+options.forEach(({CLICK_LINK, URL, OPTION}) =>{
+  describe(`#006: Sidebar redirect capabilities for "${OPTION}" option`, () => {
+
     before(function() {
       LoginPage.open();
     });
@@ -61,7 +52,7 @@ options.forEach(({CLICK_LINK, URL}) =>{
   });
 });
 
-describe(`#006: Sidebar reset app state option`, () => {
+describe(`#007: Sidebar "Reset App State" option`, () => {
   
   before(function() {
     LoginPage.open();
@@ -104,10 +95,11 @@ describe(`#006: Sidebar reset app state option`, () => {
   it(`should reset the app state`, () => {
     //ACTIONS
     InventoryPage.sidebar.resetAppState();
+    InventoryPage.sidebar.closeSidebar();
     //ASSERTIONS
-    InventoryBehaviour.expectToBeInBaseState(); //FAILS HERE 
+    InventoryBehaviour.expectToBeInBaseState(); //FAILS HERE
     expect(InventoryPage.header.secondaryTitleText).toBe(CONSTANTS.HEADER.INVENTORY);
     expect(browser.getUrl()).toBe(CONSTANTS.SAUCE_DEMO_URL.BASE + CONSTANTS.SAUCE_DEMO_URL.INVENTORY);
-    expect(InventoryBehaviour.getItemButtonText(CONSTANTS.ITEM.ONESIE.TITLE)).toBe(CONSTANTS.BUTTON.ADD_TO_CART);
+    expect(InventoryBehaviour.getItemButtonText(CONSTANTS.ITEM.ONESIE.TITLE)).toBe(CONSTANTS.BUTTON.ADD_TO_CART); //FAILS HERE
   });
 });

@@ -3,7 +3,7 @@ import LoginPage from '../page-objects/login.page';
 import InventoryPage from '../page-objects/inventory.page';
 import CheckoutStepOnePage from '../page-objects/checkout-step-one.page';
 
-//BEHAVIOURS
+//BEHAVIOUR PATTERNS
 import LoginBehaviour from '../behaviour-patterns/login.behaviour';
 import InventoryBehaviour from '../behaviour-patterns/inventory.behaviour';
 import CheckoutStepOneBehaviour from '../behaviour-patterns/checkout-step-one.behaviour';
@@ -14,36 +14,42 @@ import CONSTANTS from "../constants";
 //TEST DATA
 const test_data = [
   {
+    CASE: "Empty First Name",
     FIRST_NAME: CONSTANTS.EMPTY_STRING,
     LAST_NAME: "Ultimo",
     POSTAL_CODE: "4000-000",
     MESSAGE: CONSTANTS.MESSAGE.ERROR.MISSING_FIRST_NAME,
   },
   {
+    CASE: "Empty Last Name",
     FIRST_NAME: "Primeiro",
     LAST_NAME: CONSTANTS.EMPTY_STRING,
     POSTAL_CODE: "4000-000",
     MESSAGE: CONSTANTS.MESSAGE.ERROR.MISSING_LAST_NAME,
   },
   {
+    CASE: "Empty Postal Code",
     FIRST_NAME: "Primeiro",
     LAST_NAME: "Ultimo",
     POSTAL_CODE: CONSTANTS.EMPTY_STRING,
     MESSAGE: CONSTANTS.MESSAGE.ERROR.MISSING_POSTAL_CODE,
   },
   {
+    CASE: "Invalid First Name",
     FIRST_NAME: "12345",
     LAST_NAME: "Ultimo",
     POSTAL_CODE: "4000-000",
     MESSAGE: CONSTANTS.MESSAGE.ERROR.INVALID_FIRST_NAME,
   },
   {
+    CASE: "Invalid Last Name",
     FIRST_NAME: "Primeiro",
     LAST_NAME: "12345",
     POSTAL_CODE: "4000-000",
     MESSAGE: CONSTANTS.MESSAGE.ERROR.INVALID_LAST_NAME,
   },
   {
+    CASE: "Invalid Postal Code",
     FIRST_NAME: "Primeiro",
     LAST_NAME: "Ultimo",
     POSTAL_CODE: "batatas",
@@ -51,8 +57,8 @@ const test_data = [
   },
 ]
 
-test_data.forEach(({FIRST_NAME, LAST_NAME, POSTAL_CODE, MESSAGE}) =>{
-  describe(`#019 & #20: Checkout Step One invalid and empty values`, () => {
+test_data.forEach(({FIRST_NAME, LAST_NAME, POSTAL_CODE, MESSAGE, CASE}) =>{
+  describe(`#020 & #21: Checkout Step One for "${CASE}"`, () => {
     
     before(function() {
       LoginPage.open();

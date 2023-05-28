@@ -43,6 +43,16 @@ class Sidebar {
     return this.logoutSidebarLink.getAttribute('href');
   }
 
+  get closeSidebarButton(): WebdriverIO.Element {
+    const elem = $('[id="react-burger-cross-btn"]');
+    elem.waitForClickable();
+    return elem;
+  }
+    
+  closeSidebar(): void {
+    this.closeSidebarButton.click();
+  }
+
   clickInventorySidebarLink(): void {
     this.inventorySidebarLink.click();
   }

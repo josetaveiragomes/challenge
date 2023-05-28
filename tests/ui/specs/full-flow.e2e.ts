@@ -37,13 +37,13 @@ const items_final_order = [
 ]
 
 users.forEach(({USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, POSTAL_CODE, PAYMENT_INFO, SHIPPING_INFO}) =>{
-  describe(`#023: Happy Path for ${USERNAME}`, () => {
+  describe(`#024: Happy Path for "${USERNAME}" user`, () => {
     
     before(function() {
       LoginPage.open();
     });
 
-    it(`should login successfully with ${USERNAME}`, () => {
+    it(`should login successfully with "${USERNAME}"`, () => {
       //ACTIONS
       LoginBehaviour.login(USERNAME, PASSWORD);
       //ASSERTIONS
@@ -60,42 +60,28 @@ users.forEach(({USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, POSTAL_CODE, PAYMENT_
       InventoryBehaviour.expectItemsToBeInReverseAlphabeticalOrder();
     });
 
-    it(`should add the ${CONSTANTS.ITEM.ONESIE.TITLE} to the bag (1)`, () => {
+    it(`should add the "${CONSTANTS.ITEM.ONESIE.TITLE}" and "${CONSTANTS.ITEM.FLEECE_JACKET.TITLE}" items to the bag (2)`, () => {
       //ACTIONS
-      InventoryBehaviour.addItemToCart(CONSTANTS.ITEM.ONESIE.TITLE);
-      //ASSERTIONS
-      expect(InventoryPage.header.cartBadgeText).toBe("1");
-    });
-
-    it(`should add the ${CONSTANTS.ITEM.FLEECE_JACKET.TITLE} to the bag (2)`, () => {
-      //ACTIONS
-      InventoryBehaviour.addItemToCart(CONSTANTS.ITEM.FLEECE_JACKET.TITLE);
+      InventoryBehaviour.addItemsToCart([CONSTANTS.ITEM.ONESIE.TITLE, CONSTANTS.ITEM.FLEECE_JACKET.TITLE]);
       //ASSERTIONS
       expect(InventoryPage.header.cartBadgeText).toBe("2");
     });
 
-    it(`should remove the ${CONSTANTS.ITEM.FLEECE_JACKET.TITLE} from the bag (1)`, () => {
+    it(`should remove the "${CONSTANTS.ITEM.FLEECE_JACKET.TITLE}" from the bag (1)`, () => {
       //ACTIONS
       InventoryBehaviour.removeItemFromCart(CONSTANTS.ITEM.FLEECE_JACKET.TITLE);
       //ASSERTIONS
       expect(InventoryPage.header.cartBadgeText).toBe("1");
     });
 
-    it(`should add the ${CONSTANTS.ITEM.FLEECE_JACKET.TITLE} to the bag (2)`, () => {
+    it(`should add the "${CONSTANTS.ITEM.FLEECE_JACKET.TITLE}" and "${CONSTANTS.ITEM.BIKE_LIGHT.TITLE}" items to the bag (3)`, () => {
       //ACTIONS
-      InventoryBehaviour.addItemToCart(CONSTANTS.ITEM.FLEECE_JACKET.TITLE);
-      //ASSERTIONS
-      expect(InventoryPage.header.cartBadgeText).toBe("2");
-    });
-
-    it(`should add the ${CONSTANTS.ITEM.BIKE_LIGHT.TITLE} to the bag (3)`, () => {
-      //ACTIONS
-      InventoryBehaviour.addItemToCart(CONSTANTS.ITEM.BIKE_LIGHT.TITLE);
+      InventoryBehaviour.addItemsToCart([CONSTANTS.ITEM.FLEECE_JACKET.TITLE, CONSTANTS.ITEM.BIKE_LIGHT.TITLE]);
       //ASSERTIONS
       expect(InventoryPage.header.cartBadgeText).toBe("3");
     });
 
-    it(`should open the ${CONSTANTS.ITEM.BOLT_TSHIRT.TITLE} item page successfully`, () => {
+    it(`should open the "${CONSTANTS.ITEM.BOLT_TSHIRT.TITLE}" item page successfully`, () => {
       //ACTIONS
       InventoryBehaviour.openItem(CONSTANTS.ITEM.BOLT_TSHIRT.TITLE);
       //ASSERTIONS
@@ -105,7 +91,7 @@ users.forEach(({USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, POSTAL_CODE, PAYMENT_
       expect(browser.getUrl()).toBe(CONSTANTS.SAUCE_DEMO_URL.BASE + CONSTANTS.SAUCE_DEMO_URL.ITEM + CONSTANTS.ITEM.BOLT_TSHIRT.ID);
     });
 
-    it(`should add the ${CONSTANTS.ITEM.BOLT_TSHIRT.TITLE} to the bag (4)`, () => {
+    it(`should add the "${CONSTANTS.ITEM.BOLT_TSHIRT.TITLE}" to the bag (4)`, () => {
       //ACTIONS
       ItemPage.clickItemButton();
       //ASSERTIONS
@@ -113,7 +99,7 @@ users.forEach(({USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, POSTAL_CODE, PAYMENT_
       expect(ItemPage.header.cartBadgeText).toBe("4");
     });
 
-    it(`should remove the ${CONSTANTS.ITEM.BOLT_TSHIRT.TITLE} from the bag (3)`, () => {
+    it(`should remove the "${CONSTANTS.ITEM.BOLT_TSHIRT.TITLE}" from the bag (3)`, () => {
       //ACTIONS
       ItemPage.clickItemButton();
       //ASSERTIONS
@@ -131,7 +117,7 @@ users.forEach(({USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, POSTAL_CODE, PAYMENT_
       expect(browser.getUrl()).toBe(CONSTANTS.SAUCE_DEMO_URL.BASE + CONSTANTS.SAUCE_DEMO_URL.CART);
     });
 
-    it(`should remove the ${CONSTANTS.ITEM.FLEECE_JACKET.TITLE} item from the bag (2)`, () => {
+    it(`should remove the "${CONSTANTS.ITEM.FLEECE_JACKET.TITLE}" item from the bag (2)`, () => {
       //ACTIONS
       CartBehaviour.removeItem(CONSTANTS.ITEM.FLEECE_JACKET.TITLE);
       //ASSERTIONS

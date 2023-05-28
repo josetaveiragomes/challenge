@@ -1,31 +1,35 @@
 {
-    "name": "jose-taveira-challenge",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-        "@wdio/cli": "^7.19.6",
-        "@wdio/local-runner": "^7.19.5",
-        "@wdio/mocha-framework": "^7.19.5",
-        "@wdio/selenium-standalone-service": "^7.19.5",
-        "@wdio/spec-reporter": "^7.19.5",
-        "@wdio/sync": "^7.19.5",
-        "chai": "^4.3.6",
-        "chromedriver": "latest",
-        "wdio-chromedriver-service": "^7.3.2",
-        "wdio-timeline-reporter": "^5.1.4",
-        "wdio-video-reporter": "^3.2.1"
-    },
-    "scripts": {
-        "wdio": "wdio run wdio.conf.ts",
-        "login": "wdio wdio.conf.ts --spec login",
-        "session": "wdio wdio.conf.ts --spec session",
-        "sidebar": "wdio wdio.conf.ts --spec sidebar",
-        "footer": "wdio wdio.conf.ts --spec footer",
-        "checkout": "wdio wdio.conf.ts --spec checkout",
-        "end2end": "wdio wdio.conf.ts --spec end2end"
-    },
-    "devDependencies": {
-        "ts-node": "^10.8.1",
-        "typescript": "^4.7.3"
-    }
+  "name": "jose-taveira-challenge",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@wdio/allure-reporter": "^7.0.0",
+    "@wdio/cli": "^7.19.6",
+    "@wdio/local-runner": "^7.19.5",
+    "@wdio/mocha-framework": "^7.19.5",
+    "@wdio/selenium-standalone-service": "^7.19.5",
+    "@wdio/spec-reporter": "^7.19.5",
+    "@wdio/sync": "^7.19.5",
+    "chai": "^4.3.6",
+    "chromedriver": "latest",
+    "open-cli": "^7.2.0",
+    "wdio-chromedriver-service": "^7.3.2",
+    "wdio-timeline-reporter": "^5.1.4",
+    "wdio-video-reporter": "^3.2.1"
+  },
+  "scripts": {
+    "wdio": "wdio run wdio.conf.ts",
+    "login": "wdio wdio.conf.ts --spec login",
+    "session": "wdio wdio.conf.ts --spec session",
+    "sidebar": "wdio wdio.conf.ts --spec sidebar",
+    "footer": "wdio wdio.conf.ts --spec footer",
+    "checkout": "wdio wdio.conf.ts --spec checkout",
+    "end2end": "wdio wdio.conf.ts --spec end2end",
+    "allure": "allure generate allure-results && allure open",
+    "timeline": "open-cli reports/timeline-report.html"
+  },
+  "devDependencies": {
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3"
+  }
 }

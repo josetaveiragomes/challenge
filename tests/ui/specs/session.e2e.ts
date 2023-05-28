@@ -10,7 +10,7 @@ import InventoryBehaviour from '../behaviour-patterns/inventory.behaviour';
 import CONSTANTS from "../constants";
 
 describe(`#004 & #005: Session cookie expires and saves cart data`, () => {
-  
+
   before(function() {
     LoginPage.open();
   });
@@ -24,16 +24,9 @@ describe(`#004 & #005: Session cookie expires and saves cart data`, () => {
     expect(browser.getUrl()).toBe(CONSTANTS.SAUCE_DEMO_URL.BASE + CONSTANTS.SAUCE_DEMO_URL.INVENTORY);
   });
 
-  it(`should add the ${CONSTANTS.ITEM.ONESIE.TITLE} to the bag (1)`, () => {
+  it(`should add the "${CONSTANTS.ITEM.ONESIE.TITLE}" and "${CONSTANTS.ITEM.FLEECE_JACKET.TITLE}" items to the bag (2)`, () => {
     //ACTIONS
-    InventoryBehaviour.addItemToCart(CONSTANTS.ITEM.ONESIE.TITLE);
-    //ASSERTIONS
-    expect(InventoryPage.header.cartBadgeText).toBe("1");
-  });
-
-  it(`should add the ${CONSTANTS.ITEM.FLEECE_JACKET.TITLE} to the bag (2)`, () => {
-    //ACTIONS
-    InventoryBehaviour.addItemToCart(CONSTANTS.ITEM.FLEECE_JACKET.TITLE);
+    InventoryBehaviour.addItemsToCart([CONSTANTS.ITEM.ONESIE.TITLE, CONSTANTS.ITEM.FLEECE_JACKET.TITLE]);
     //ASSERTIONS
     expect(InventoryPage.header.cartBadgeText).toBe("2");
   });

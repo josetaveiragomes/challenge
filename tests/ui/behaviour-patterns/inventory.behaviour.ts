@@ -33,6 +33,12 @@ class InventoryBehaviour extends Behaviour {
     expect(InventoryPage.itemButton(InventoryPage.getItemByName(name)).getText()).toBe(CONSTANTS.BUTTON.REMOVE);
   }
 
+  addItemsToCart(name_list: Array<string>): void {
+    name_list.forEach((name) => {
+      this.addItemToCart(name);
+    });
+  }
+
   removeItemFromCart(name: string): void {
     expect(InventoryPage.itemButton(InventoryPage.getItemByName(name)).getText()).toBe(CONSTANTS.BUTTON.REMOVE);
     InventoryPage.itemButton(InventoryPage.getItemByName(name)).click();

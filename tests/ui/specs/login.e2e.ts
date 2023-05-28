@@ -1,7 +1,7 @@
 //PAGE OBJECTS
 import LoginPage from '../page-objects/login.page';
 
-//BEHAVIOURS
+//BEHAVIOUR PATTERNS
 import LoginBehaviour from '../behaviour-patterns/login.behaviour';
 
 //CONSTANTS
@@ -16,7 +16,7 @@ const users = [
 ]
 
 users.forEach(({USERNAME, PASSWORD, MESSAGE}) =>{
-  describe(`#003: Login with invalid user for ${USERNAME}`, () => {
+  describe(`#003: Login with invalid user for "${USERNAME}" user`, () => {
     
     before(function() {
       LoginPage.open();

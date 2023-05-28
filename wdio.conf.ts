@@ -56,9 +56,18 @@ exports.config = {
     [
       video, 
       {
-        outputDir: 'reports/videos',
+        outputDir: 'reports',
         saveAllVideos: false,
         videoSlowdownMultiplier: 3,
+        videoRenderTimeout: 5,
+      }
+    ],
+    [
+      'allure', 
+      {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
       }
     ],
   ],
@@ -66,5 +75,5 @@ exports.config = {
     ui: 'bdd',
     timeout: 10000,
     bail: false
-  }
+  },
 }
