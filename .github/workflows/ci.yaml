@@ -11,13 +11,14 @@ jobs:
         #   with:
         #     node-version: 14.19.1
         - name: Install
-          run: google-chrome --version
-          run: wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-          run: echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list     
-          run: apt-get update
-          run: apt-get install google-chrome-stable
-          run: google-chrome --version
-          run: npm install
+          run: |
+            google-chrome --version
+            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+            echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list     
+            apt-get update
+            apt-get install google-chrome-stable
+            google-chrome --version
+            npm install
         - name: Test
           run: npm run wdio
         - name: Upload Artifacts
