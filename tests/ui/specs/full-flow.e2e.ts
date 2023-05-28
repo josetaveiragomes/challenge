@@ -37,7 +37,7 @@ const items_final_order = [
 ]
 
 users.forEach(({USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, POSTAL_CODE, PAYMENT_INFO, SHIPPING_INFO}) =>{
-  describe(`#024: Happy Path for "${USERNAME}" user`, () => {
+  describe(`#026: Happy Path for "${USERNAME}" user`, () => {
     
     before(function() {
       LoginPage.open();

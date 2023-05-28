@@ -58,7 +58,7 @@ const test_data = [
 ]
 
 test_data.forEach(({FIRST_NAME, LAST_NAME, POSTAL_CODE, MESSAGE, CASE}) =>{
-  describe(`#020 & #021: Checkout Step One for "${CASE}"`, () => {
+  describe(`#022 & #023: Checkout Step One for "${CASE}"`, () => {
     
     before(function() {
       LoginPage.open();
